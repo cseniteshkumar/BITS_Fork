@@ -1600,3 +1600,502 @@ print(f"Solution: x = {x[0]}, y = {x[1]}")
      
 Solution: x = 4.714285714285714, y = 1.1428571428571428
 
+class 8 - File Handling
+
+
+
+'''
+  1. File Handling
+  2. Exception Handling
+'''
+     
+
+## File Handling
+
+'''
+  Focus: Reading and writing for logging, processing sensor data and simulation machine logs.
+  Intro:
+    * File handling helps to interact with external files..
+    * Why? Store Temp/pressure/speed senor data, writing daily reports of daily production
+  Modes:
+    * "r": Read Only
+    * "w": Write (Overwrite)
+    * "a": Append (adds to the file)
+    * "r+": Read & write
+
+  Method:
+    * read(): reads entire file
+    * readlines(): reads line by line into a list
+    * readline: read line by line if file is large
+'''
+     
+
+## Open and close file
+     
+
+import os
+os.listdir(".")
+     
+['.config', 'sample_data']
+
+file = open("log.txt","w")
+file.write("Machine Started. This is our 1st experiment!")
+file.close()
+     
+
+import os
+os.listdir(".")
+     
+['.config', 'log.txt', 'sample_data']
+
+## Reading from a File
+     
+
+file = open("log.txt","r")
+content = file.read()
+print(content)
+file.close()
+     
+This article is about the country. For other uses, see United Kingdom (disambiguation).
+"UK" redirects here. For other uses, see UK (disambiguation).
+United Kingdom of Great Britain and Northern Ireland
+A flag composed of a red cross edged in white and superimposed on a red saltire, also edged in white, superimposed on a white saltire on a blue background
+Flag
+Anthem: "God Save the King"[a]
+Duration: 1 minute and 4 seconds.1:04
+Coats of arms:
+
+Used in relation to Scotland (right) and elsewhere (left)
+
+Show globe
+Show map of Europe
+Show British Overseas Territories and Crown Dependencies
+Show their exclusive economic zones
+Show all
+Capital
+and largest city
+London
+51°30′N 0°7′W
+National language	English
+Regional and minority languages[b]	
+ScotsUlster ScotsWelshCornishScottish GaelicIrishBritish Sign Language
+Ethnic groups (2021)[c][4][5][6]	
+83.0% White
+8.6% Asian
+3.7% Black
+2.7% Mixed
+2.0% other
+Religion (2021)[c][7][8][6]	
+46.5% Christianity
+37.8% no religion
+6.0% Islam
+1.6% Hinduism
+0.8% Sikhism
+0.4% Buddhism
+0.4% Judaism
+0.6% other
+5.9% not stated
+Demonym(s)	
+BritishBritonBrit (colloquial)
+Government	Unitary parliamentary constitutional monarchy[d]
+• Monarch
+Charles III
+• Prime Minister
+Keir Starmer
+Legislature	Parliament
+• Upper house
+House of Lords
+• Lower house
+House of Commons
+Formation
+• Laws in Wales Acts
+1535 and 1542
+• Union of the Crowns
+24 March 1603
+• Treaty of Union
+22 July 1706
+• Acts of Union of England and Scotland
+1 May 1707
+• Acts of Union of Great Britain and Ireland
+1 January 1801
+• Irish Free State Constitution Act
+6 December 1922
+Area
+• Total[f]
+244,376 km2 (94,354 sq mi)[12] (78th)
+• Land[e]
+242,495 km2 (93,628 sq mi)[12]
+Population
+• 2023 estimate
+Neutral increase 68,265,209[13] (21st)
+• 2021 census
+Neutral increase 66,940,559[c][14][15][16]
+• Density
+281/km2 (727.8/sq mi)[13] (48th)
+GDP (PPP)	2025 estimate
+• Total
+Increase $4.448 trillion[17] (10th)
+• Per capita
+Increase $63,661[17] (28th)
+GDP (nominal)	2025 estimate
+• Total
+Increase $3.839 trillion[17] (6th)
+• Per capita
+Increase $54,949[17] (18th)
+Gini (2021)	Positive decrease 35.4[18]
+medium inequality
+HDI (2023)	Increase 0.946[19]
+very high (13th)
+Currency	Pound sterling[g] (£) (GBP)
+Time zone	UTC+0 (GMT)
+• Summer (DST)
+UTC+1 (BST[h])
+Date format	dd/mm/yyyy (AD)[i]
+Calling code	+44[j]
+ISO 3166 code	GB
+Internet TLD	.uk[k]
+The United Kingdom of Great Britain and Northern Ireland, commonly known as the United Kingdom (UK) or Britain,[m] is a country in north-western Europe, off the coast of the continental mainland. It comprises England, Scotland, Wales and Northern Ireland.[n] The UK includes the island of Great Britain, the north-eastern part of the island of Ireland, and most of the smaller islands within the British Isles, covering 94,354 square miles (244,376 km2).[f] Northern Ireland shares a land border with the Republic of Ireland; otherwise, the UK is surrounded by the Atlantic Ocean, the North Sea, the English Channel, the Celtic Sea and the Irish Sea. It maintains sovereignty over the British Overseas Territories, which are located across various oceans and seas globally. The UK had an estimated population of over 68.2 million people in 2023. The capital and largest city of both England and the UK is London. The cities of Edinburgh, Cardiff and Belfast are the national capitals of Scotland, Wales and Northern Ireland respectively.
+
+The UK has been inhabited continuously since the Neolithic. In AD 43 the Roman conquest of Britain began; the Roman departure was followed by Anglo-Saxon settlement. In 1066 the Normans conquered England. With the end of the Wars of the Roses the Kingdom of England stabilised and began to grow in power, resulting by the 16th century in the annexation of Wales and the establishment of the British Empire. Over the course of the 17th century the role of the British monarchy was reduced, particularly as a result of the English Civil War. In 1707 the Kingdom of England and the Kingdom of Scotland united under the Treaty of Union to create the Kingdom of Great Britain. In the Georgian era the office of prime minister became established. The Acts of Union 1800 incorporated the Kingdom of Ireland to create the United Kingdom of Great Britain and Ireland in 1801. Most of Ireland seceded from the UK in 1922 as the Irish Free State, and the Royal and Parliamentary Titles Act 1927 created the present United Kingdom.
+
+The UK became the first industrialised country and was the world's foremost power for the majority of the 19th and early 20th centuries, particularly during the Pax Britannica between 1815 and 1914. The British Empire was the leading economic power for most of the 19th century, a position supported by its agricultural prosperity, its role as a dominant trading nation, a massive industrial capacity, significant technological achievements, and the rise of 19th-century London as the world's principal financial centre. At its height in the 1920s the empire encompassed almost a quarter of the world's landmass and population, and was the largest empire in history. However, its involvement in the First World War and the Second World War damaged Britain's economic power, and a global wave of decolonisation led to the independence of most British colonies.
+
+The UK is a constitutional monarchy and parliamentary democracy.[o] It has three distinct jurisdictions: England and Wales, Scotland, and Northern Ireland. Since 1999 Scotland, Wales and Northern Ireland have their own governments and parliaments which control various devolved matters. A developed country with an advanced economy, the UK ranks amongst the largest economies by nominal GDP, and is one of the world's largest exporters and importers. It is a nuclear state with one of the world's highest military budgets. Its soft power influence can be observed in the legal and political systems of many of its former colonies, and British culture remains globally influential, particularly in language, literature, music and sport. English is the world's most-widely-spoken language and the third-most-spoken native language. The UK is part of multiple international organisations and forums.
+
+Etymology and terminology
+
+See also: Britain (place name) and Terminology of the British Isles
+The Acts of Union 1707 declared that the Kingdom of England and Kingdom of Scotland were "United into One Kingdom by the Name of Great Britain".[p][22] The term "United Kingdom" has occasionally been used as a description for the former Kingdom of Great Britain, although its official name from 1707 to 1800 was simply "Great Britain".[23] The Acts of Union 1800 formed the United Kingdom of Great Britain and Ireland. Following the partition of Ireland and the independence of the Irish Free State in 1922, which left Northern Ireland as the only part of the island of Ireland within the United Kingdom, the name was changed in 1927 to the "United Kingdom of Great Britain and Northern Ireland".[24]
+
+Although the United Kingdom is a sovereign country, England, Scotland, Wales and Northern Ireland are also widely referred to as countries.[25] The UK Prime Minister's website has used the phrase "countries within a country" to describe it.[26] Some statistical summaries, such as those for the twelve NUTS 1 regions, refer to Scotland, Wales and Northern Ireland as "regions".[27] Northern Ireland is also referred to as a "province".[28] With regard to Northern Ireland, the descriptive name used "can be controversial, with the choice often revealing one's political preferences".[29]
+
+The term "Great Britain" conventionally refers to the island of Great Britain, or politically to England, Scotland and Wales in combination.[30] It is sometimes used as a loose synonym for the United Kingdom as a whole.[31] The word England is occasionally used incorrectly to refer to the United Kingdom as a whole, a mistake principally made by people from outside the UK.[32]
+
+type(content)
+     
+str
+
+file = open("log.txt","r")
+lines = file.readlines()
+print(type(lines))
+print(f"No of lines: {len(lines)}")
+print(lines)
+file.close()
+     
+<class 'list'>
+No of lines: 114
+['This article is about the country. For other uses, see United Kingdom (disambiguation).\n', '"UK" redirects here. For other uses, see UK (disambiguation).\n', 'United Kingdom of Great Britain and Northern Ireland\n', 'A flag composed of a red cross edged in white and superimposed on a red saltire, also edged in white, superimposed on a white saltire on a blue background\n', 'Flag\n', 'Anthem: "God Save the King"[a]\n', 'Duration: 1 minute and 4 seconds.1:04\n', 'Coats of arms:\n', '\n', 'Used in relation to Scotland (right) and elsewhere (left)\n', '\n', 'Show globe\n', 'Show map of Europe\n', 'Show British Overseas Territories and Crown Dependencies\n', 'Show their exclusive economic zones\n', 'Show all\n', 'Capital\n', 'and largest city\n', 'London\n', '51°30′N 0°7′W\n', 'National language\tEnglish\n', 'Regional and minority languages[b]\t\n', 'ScotsUlster ScotsWelshCornishScottish GaelicIrishBritish Sign Language\n', 'Ethnic groups (2021)[c][4][5][6]\t\n', '83.0% White\n', '8.6% Asian\n', '3.7% Black\n', '2.7% Mixed\n', '2.0% other\n', 'Religion (2021)[c][7][8][6]\t\n', '46.5% Christianity\n', '37.8% no religion\n', '6.0% Islam\n', '1.6% Hinduism\n', '0.8% Sikhism\n', '0.4% Buddhism\n', '0.4% Judaism\n', '0.6% other\n', '5.9% not stated\n', 'Demonym(s)\t\n', 'BritishBritonBrit (colloquial)\n', 'Government\tUnitary parliamentary constitutional monarchy[d]\n', '• Monarch\n', 'Charles III\n', '• Prime Minister\n', 'Keir Starmer\n', 'Legislature\tParliament\n', '• Upper house\n', 'House of Lords\n', '• Lower house\n', 'House of Commons\n', 'Formation\n', '• Laws in Wales Acts\n', '1535 and 1542\n', '• Union of the Crowns\n', '24 March 1603\n', '• Treaty of Union\n', '22 July 1706\n', '• Acts of Union of England and Scotland\n', '1 May 1707\n', '• Acts of Union of Great Britain and Ireland\n', '1 January 1801\n', '• Irish Free State Constitution Act\n', '6 December 1922\n', 'Area\n', '• Total[f]\n', '244,376 km2 (94,354 sq mi)[12] (78th)\n', '• Land[e]\n', '242,495 km2 (93,628 sq mi)[12]\n', 'Population\n', '• 2023 estimate\n', 'Neutral increase 68,265,209[13] (21st)\n', '• 2021 census\n', 'Neutral increase 66,940,559[c][14][15][16]\n', '• Density\n', '281/km2 (727.8/sq mi)[13] (48th)\n', 'GDP (PPP)\t2025 estimate\n', '• Total\n', 'Increase $4.448 trillion[17] (10th)\n', '• Per capita\n', 'Increase $63,661[17] (28th)\n', 'GDP (nominal)\t2025 estimate\n', '• Total\n', 'Increase $3.839 trillion[17] (6th)\n', '• Per capita\n', 'Increase $54,949[17] (18th)\n', 'Gini (2021)\tPositive decrease 35.4[18]\n', 'medium inequality\n', 'HDI (2023)\tIncrease 0.946[19]\n', 'very high (13th)\n', 'Currency\tPound sterling[g] (£) (GBP)\n', 'Time zone\tUTC+0 (GMT)\n', '• Summer (DST)\n', 'UTC+1 (BST[h])\n', 'Date format\tdd/mm/yyyy (AD)[i]\n', 'Calling code\t+44[j]\n', 'ISO 3166 code\tGB\n', 'Internet TLD\t.uk[k]\n', 'The United Kingdom of Great Britain and Northern Ireland, commonly known as the United Kingdom (UK) or Britain,[m] is a country in north-western Europe, off the coast of the continental mainland. It comprises England, Scotland, Wales and Northern Ireland.[n] The UK includes the island of Great Britain, the north-eastern part of the island of Ireland, and most of the smaller islands within the British Isles, covering 94,354 square miles (244,376 km2).[f] Northern Ireland shares a land border with the Republic of Ireland; otherwise, the UK is surrounded by the Atlantic Ocean, the North Sea, the English Channel, the Celtic Sea and the Irish Sea. It maintains sovereignty over the British Overseas Territories, which are located across various oceans and seas globally. The UK had an estimated population of over 68.2 million people in 2023. The capital and largest city of both England and the UK is London. The cities of Edinburgh, Cardiff and Belfast are the national capitals of Scotland, Wales and Northern Ireland respectively.\n', '\n', 'The UK has been inhabited continuously since the Neolithic. In AD 43 the Roman conquest of Britain began; the Roman departure was followed by Anglo-Saxon settlement. In 1066 the Normans conquered England. With the end of the Wars of the Roses the Kingdom of England stabilised and began to grow in power, resulting by the 16th century in the annexation of Wales and the establishment of the British Empire. Over the course of the 17th century the role of the British monarchy was reduced, particularly as a result of the English Civil War. In 1707 the Kingdom of England and the Kingdom of Scotland united under the Treaty of Union to create the Kingdom of Great Britain. In the Georgian era the office of prime minister became established. The Acts of Union 1800 incorporated the Kingdom of Ireland to create the United Kingdom of Great Britain and Ireland in 1801. Most of Ireland seceded from the UK in 1922 as the Irish Free State, and the Royal and Parliamentary Titles Act 1927 created the present United Kingdom.\n', '\n', "The UK became the first industrialised country and was the world's foremost power for the majority of the 19th and early 20th centuries, particularly during the Pax Britannica between 1815 and 1914. The British Empire was the leading economic power for most of the 19th century, a position supported by its agricultural prosperity, its role as a dominant trading nation, a massive industrial capacity, significant technological achievements, and the rise of 19th-century London as the world's principal financial centre. At its height in the 1920s the empire encompassed almost a quarter of the world's landmass and population, and was the largest empire in history. However, its involvement in the First World War and the Second World War damaged Britain's economic power, and a global wave of decolonisation led to the independence of most British colonies.\n", '\n', "The UK is a constitutional monarchy and parliamentary democracy.[o] It has three distinct jurisdictions: England and Wales, Scotland, and Northern Ireland. Since 1999 Scotland, Wales and Northern Ireland have their own governments and parliaments which control various devolved matters. A developed country with an advanced economy, the UK ranks amongst the largest economies by nominal GDP, and is one of the world's largest exporters and importers. It is a nuclear state with one of the world's highest military budgets. Its soft power influence can be observed in the legal and political systems of many of its former colonies, and British culture remains globally influential, particularly in language, literature, music and sport. English is the world's most-widely-spoken language and the third-most-spoken native language. The UK is part of multiple international organisations and forums.\n", '\n', 'Etymology and terminology\n', '\n', 'See also: Britain (place name) and Terminology of the British Isles\n', 'The Acts of Union 1707 declared that the Kingdom of England and Kingdom of Scotland were "United into One Kingdom by the Name of Great Britain".[p][22] The term "United Kingdom" has occasionally been used as a description for the former Kingdom of Great Britain, although its official name from 1707 to 1800 was simply "Great Britain".[23] The Acts of Union 1800 formed the United Kingdom of Great Britain and Ireland. Following the partition of Ireland and the independence of the Irish Free State in 1922, which left Northern Ireland as the only part of the island of Ireland within the United Kingdom, the name was changed in 1927 to the "United Kingdom of Great Britain and Northern Ireland".[24]\n', '\n', 'Although the United Kingdom is a sovereign country, England, Scotland, Wales and Northern Ireland are also widely referred to as countries.[25] The UK Prime Minister\'s website has used the phrase "countries within a country" to describe it.[26] Some statistical summaries, such as those for the twelve NUTS 1 regions, refer to Scotland, Wales and Northern Ireland as "regions".[27] Northern Ireland is also referred to as a "province".[28] With regard to Northern Ireland, the descriptive name used "can be controversial, with the choice often revealing one\'s political preferences".[29]\n', '\n', 'The term "Great Britain" conventionally refers to the island of Great Britain, or politically to England, Scotland and Wales in combination.[30] It is sometimes used as a loose synonym for the United Kingdom as a whole.[31] The word England is occasionally used incorrectly to refer to the United Kingdom as a whole, a mistake principally made by people from outside the UK.[32]']
+
+lines[100]
+     
+'The UK has been inhabited continuously since the Neolithic. In AD 43 the Roman conquest of Britain began; the Roman departure was followed by Anglo-Saxon settlement. In 1066 the Normans conquered England. With the end of the Wars of the Roses the Kingdom of England stabilised and began to grow in power, resulting by the 16th century in the annexation of Wales and the establishment of the British Empire. Over the course of the 17th century the role of the British monarchy was reduced, particularly as a result of the English Civil War. In 1707 the Kingdom of England and the Kingdom of Scotland united under the Treaty of Union to create the Kingdom of Great Britain. In the Georgian era the office of prime minister became established. The Acts of Union 1800 incorporated the Kingdom of Ireland to create the United Kingdom of Great Britain and Ireland in 1801. Most of Ireland seceded from the UK in 1922 as the Irish Free State, and the Royal and Parliamentary Titles Act 1927 created the present United Kingdom.\n'
+
+## Write to file
+     
+
+file = open("machine_status.txt","w")
+file.write("Machine A: Running\n")
+file.write("Machine B: Idle\n")
+file.close()
+     
+
+## Append to file
+     
+
+file = open("machine_status.txt","a")
+file.write("Machine C: Faulty\n")
+file.close()
+     
+
+## Use Case 1: Logging Machine data
+     
+
+machines = {
+    "Machine1": "Running",
+    "Machine2": "Idle",
+    "Machine3": "Faulty"
+}
+
+with open("status_log.txt","w") as file:
+  for machine,status in machines.items():
+    file.write(f"{machine}: {status}\n")
+     
+
+## Use Case 2: Reading Sensor Data from CSV
+     
+
+with open("sensor_data.csv","r") as file:
+  lines = file.readlines()
+  # print(lines)
+  for line in lines[1:]:
+    timestamp, temp, pressure = line.split("\t")
+    print(f"Timestamp: {timestamp}, Temperature: {temp}, Pressure: {pressure}")
+  file.close()
+     
+Timestamp: 7/6/2025 8:00, Temperature: 78.5, Pressure: 101.3
+
+Timestamp: 7/6/2025 9:00, Temperature: 80.2, Pressure: 101
+
+Timestamp: 7/6/2025 10:00, Temperature: 95.1, Pressure: 99.9
+
+
+with open("log.txt","r") as file:
+  first_line = file.readline()
+  print(f"First Line: {first_line}")
+     
+First Line: This article is about the country. For other uses, see United Kingdom (disambiguation).
+
+
+import time
+with open("log.txt","r") as file:
+  line = file.readline()
+  while line:
+    print(f"Read:",line.strip())
+    time.sleep(5)
+    line=file.readline()
+     
+Read: This article is about the country. For other uses, see United Kingdom (disambiguation).
+Read: "UK" redirects here. For other uses, see UK (disambiguation).
+Read: United Kingdom of Great Britain and Northern Ireland
+Read: A flag composed of a red cross edged in white and superimposed on a red saltire, also edged in white, superimposed on a white saltire on a blue background
+Read: Flag
+Read: Anthem: "God Save the King"[a]
+Read: Duration: 1 minute and 4 seconds.1:04
+Read: Coats of arms:
+Read: 
+Read: Used in relation to Scotland (right) and elsewhere (left)
+Read: 
+Read: Show globe
+Read: Show map of Europe
+---------------------------------------------------------------------------
+KeyboardInterrupt                         Traceback (most recent call last)
+/tmp/ipython-input-38-3990466257.py in <cell line: 0>()
+      4   while line:
+      5     print(f"Read:",line.strip())
+----> 6     time.sleep(5)
+      7     line=file.readline()
+
+KeyboardInterrupt: 
+
+'''
+Why try-except?: File I/O can fail if file not found, file is locked or in use or data is malformed or permission is denied.
+Instead of your program crashing, try-except lets you handle these errors gracefully.
+'''
+     
+
+a = 4
+b = 2
+try:
+  c = a/b
+  print(f"Value of a: {a}, Value of b: {b}, Value of a/b: {c}")
+except Exception as e:
+  print(f"Exception: {e}")
+     
+Value of a: 4, Value of b: 2, Value of a/b: 2.0
+
+a = 4
+b = 2
+c = a/b
+print(f"Value of a: {a}, Value of b: {b}, Value of a/b: {c}")
+     
+Value of a: 4, Value of b: 2, Value of a/b: 2.0
+
+a = 4
+b = 0
+c = a/b
+print(f"Value of a: {a}, Value of b: {b}, Value of a/b: {c}")
+print("After code crash but used try-except")
+     
+---------------------------------------------------------------------------
+ZeroDivisionError                         Traceback (most recent call last)
+/tmp/ipython-input-24-3519287317.py in <cell line: 0>()
+      1 a = 4
+      2 b = 0
+----> 3 c = a/b
+      4 print(f"Value of a: {a}, Value of b: {b}, Value of a/b: {c}")
+      5 print("After code crash but used try-except")
+
+ZeroDivisionError: division by zero
+
+a = 4
+b = 0
+try:
+  c = a/b
+  print(f"Value of a: {a}, Value of b: {b}, Value of a/b: {c}")
+except Exception as e:
+  print(f"Exception: {e}")
+print("After code crash but used try-except")
+     
+Exception: division by zero
+After code crash but used try-except
+
+## Best Practices - Handle File not found
+     
+
+#read missing file
+with open("missing_file.txt","r") as file:
+  data = file.read()
+  print(data)
+  file.close()
+     
+---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+/tmp/ipython-input-26-2576998585.py in <cell line: 0>()
+      1 #read missing file
+----> 2 with open("missing_file.txt","r") as file:
+      3   data = file.read()
+      4   print(data)
+      5   file.close()
+
+FileNotFoundError: [Errno 2] No such file or directory: 'missing_file.txt'
+
+try:
+  with open("missing_file.txt","r") as file:
+    data = file.read()
+    print(data)
+    file.close()
+except FileNotFoundError:
+  print("File was not found")
+     
+File was not found
+
+def read_data(filename):
+    with open(filename,"r") as file:
+      data = file.read()
+      file.close()
+    return data
+     
+
+## Validate File existence before reading
+     
+
+import os
+# filename = "machine_status.txt"
+filename = "machine_statusssjkhuie.txt"
+status = os.path.exists(filename)
+print(f"Status of file: {filename}: {status}")
+     
+Status of file: machine_statusssjkhuie.txt: False
+
+class 8 - Intro to OOPS
+
+
+
+'''
+  What is OOP? -- Paridgm that organizes software design around objects rather than functions and logic.
+  Some concepts:
+    * Class - Blueprint for creating objects
+    * Object - Instance of class (Like specific machine)
+    * Attribute - Data associated with object
+    * Method - Functions inside a class that perform operations
+'''
+     
+
+## Basic Class Example
+     
+
+class Machine:
+  def __init__(self, name, temperature):
+    self.name = name
+    self.temperature = temperature
+
+  def check_status(self):
+    if self.temperature>90:
+      return f"{self.name} is overheating!"
+    else:
+      return f"{self.name} is operating normally."
+     
+
+## creating object - instance of class
+m1 = Machine("CNC-001",95)
+     
+
+m1.temperature
+     
+95
+
+m1.name
+     
+'CNC-001'
+
+m1.check_status()
+     
+'CNC-001 is overheating!'
+
+type(m1)
+     
+Machine
+def __init__(name, temperature)
+<no docstring>
+
+# dir(m1)
+     
+
+## encapsulation - Hides internal object details.
+     
+
+class Sensor:
+  def __init__(self):
+    self.__reading = 0
+
+  def set_reading(self,value):
+    if value>=0:
+      self.__reading = value
+
+  def get_reading(self):
+    return self.__reading
+     
+
+s = Sensor()
+s.set_reading(88)
+print(s.get_reading())
+     
+88
+
+## Inheritance - Used to create specialized machine types
+     
+
+class Machine:
+  def operate(self):
+    return "Generic Operation"
+
+class CNC(Machine):
+  def operate(self):
+    return "Cutting Metal"
+     
+
+cnc  = CNC()
+print(cnc.operate())
+     
+Cutting Metal
+
+dir(cnc)
+     
+['__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getstate__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ 'operate']
