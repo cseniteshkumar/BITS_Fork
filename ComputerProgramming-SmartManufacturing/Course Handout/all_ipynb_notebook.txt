@@ -2377,3 +2377,534 @@ Animal makes a sound.
 d = Dog()
 d.speak()
 Dog barks. 
+
+
+Class 10 - Pandas 
+
+import pandas as pd
+s = pd.Series([10,20,30])
+df = pd.DataFrame({
+"Machine":["M1","M2","M3","M4"],
+"Temperature":[75,80,79,90],
+"Status":["Ok","Fail","Ok","Failed"]
+})
+df
+df.shape
+(4, 3)
+no rows = df.shape[0]
+_ p [ ]
+no_columns = df.shape[1]
+print(f"No of rows: {no_rows}, No of columns: {no_columns}")
+No of rows: 4, No of columns: 3
+df.head(2)
+df.head() ## by default, its 5 rows
+df.tail(2)
+df.info()
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 4 entries, 0 to 3
+Data columns (total 3 columns):
+ # Column Non-Null Count Dtype
+--- ------ -------------- -----
+ 0 Machine 4 non-null object
+ 1 Temperature 4 non-null int64
+ 2 Status 4 non-null object
+dtypes: int64(1), object(2)
+memory usage: 228.0+ bytes
+df[["Machine","Temperature"]]
+df["Temperature"]
+df["Machine"]
+df["Status"]
+## Value counts used to count frequency of values in column
+df["Status"].value_counts().reset_index()
+## Data Filter
+df[df["Temperature"]>78]
+## read tabular data file into pandas
+orders = pd.read_table("https://raw.githubusercontent.com/justmarkham/pandas-videos/master/data/ch
+orders
+orders.head()
+orders.shape
+(4622, 5)
+user_cols = ["user_id","age","gender","occupation","zip_code"]
+users = pd.read_table("http://bit.ly/movieusers",sep="|",header=None,names=user_cols)
+users.head()
+ufo = pd.read_table("http://bit.ly/uforeports",sep=",")
+ufo.head()
+ufo.City
+ufo["City"]
+ufo[['City','State']].head()
+ufo["Location"] = ufo["City"]+ ", "+ufo["State"]
+ufo["Location"]
+ufo.head()
+movies = pd.read_csv("http://bit.ly/imdbratings")
+movies.head()
+movies.describe()
+movies.describe(include=['object'])
+movies.shape
+(979, 6)
+movies.dtypes
+ufo.columns
+Index(['City', 'Colors Reported', 'Shape Reported', 'State', 'Time',
+ 'Location'],
+ dtype='object')
+## Rename two of the columns using rename method..
+ufo.rename(columns = {"Colors Reported":"Colors_Reported"},inplace=True)
+ufo.columns
+Index(['City', 'Colors_Reported', 'Shape Reported', 'State', 'Time',
+ 'Location'],
+ dtype='object')
+## remove single column
+ufo.drop("Colors_Reported",axis=1,inplace=True)
+ufo.columns
+Index(['City', 'Shape Reported', 'State', 'Time', 'Location'], dtype='object')
+ufo.head()
+ufo.drop(['City','State'],axis=1,inplace=True)
+ufo.head()
+## remove multiple rows at once (axis=0)
+ufo.drop([0,1],axis=0,inplace=True)
+ufo.head()
+ufo[ufo.index==4]
+movies.columns
+Index(['star_rating', 'title', 'content_rating', 'genre', 'duration',
+ 'actors_list'],
+ dtype='object')
+## Apply multiple filters
+movies[(movies["duration"]>=200) & (movies["genre"]=="Drama")]
+movies[(movies["duration"]>=200) | (movies["genre"]=="Drama")]
+## | --> OR, & --> AND
+## sometimes, you want to read some sample data only as original data is big enough
+ufo = pd.read_csv("http://bit.ly/uforeports",nrows=10)
+ufo.shape
+(10, 5)
+ufo.head(6)
+## Iterate through dataframe
+for index, row in ufo.iterrows():
+print(index, row["City"], row["State"])
+0 Ithaca NY
+1 Willingboro NJ
+2 Holyoke CO
+3 Abilene KS
+4 New York Worlds Fair NY
+5 Valley City ND
+6 Crater Lake CA
+7 Alma MI
+8 Eklutna AK
+9 Hubbard OR
+## alcohol consumption
+drinks = pd.read_csv("http://bit.ly/drinksbycountry")
+drinks.dtypes
+drinks
+drinks[["beer_servings","spirit_servings","wine_servings","total_litres_of_pure_alcohol"]].mean()
+drinks.country.str.upper()
+orders[orders.item_name.str.contains("Tomato")]
+drinks.beer_servings.mean()
+np.float64(106.16062176165804)
+drinks[drinks["continent"]=="Africa"].beer_servings.mean()
+np.float64(61.471698113207545)
+## calculate mean beer servings for each continent
+drinks.groupby("continent").beer_servings.mean()
+drinks.groupby('continent').beer_servings.agg(['count','mean','min','max'])
+drinks.groupby('continent')[["beer_servings","spirit_servings","wine_servings","total_litres_of_pu
+
+
+Class - 11 Pandas
+
+Class - 11 Pandas 
+import pandas as pd
+movies = pd.read_csv("http://bit.ly/imdbratings")
+star_rating title content_rating genre duration actors_list
+0 9.3 The Shawshank
+Redemption R Crime 142 [u'Tim Robbins', u'Morgan
+Freeman', u'Bob Gunt...
+1 9.2 The Godfather R Crime 175 [u'Marlon Brando', u'Al
+Pacino', u'James Caan']
+2 9.1 The Godfather:
+Part II R Crime 200 [u'Al Pacino', u'Robert De
+Niro', u'Robert Duv...
+3 9 0 Th D k K i ht PG 13 A ti 152 [u'Christian Bale', u'Heath
+movies.head()
+movies.dtypes
+0
+star_rating float64
+title object
+content_rating object
+genre object
+duration int64
+actors_list object
+dtype: object
+genre
+count 979
+unique 16
+top Drama
+freq 278
+dtype: object
+movies.genre.describe()
+movies.genre.value_counts()
+count
+genre
+Drama 278
+Comedy 156
+Action 136
+Crime 124
+Biography 77
+Adventure 75
+Animation 62
+Horror 29
+Mystery 16
+Western 9
+Sci-Fi 5
+Thriller 5
+Film-Noir 3
+Family 2
+History 1
+Fantasy 1
+dtype: int64
+movies.genre.value_counts(normalize=True)*100
+proportion
+genre
+Drama 28.396323
+Comedy 15.934627
+Action 13.891726
+Crime 12.665986
+Biography 7.865169
+Adventure 7.660878
+Animation 6.332993
+Horror 2.962206
+Mystery 1.634321
+Western 0.919305
+Sci-Fi 0.510725
+Thriller 0.510725
+Film-Noir 0.306435
+Family 0.204290
+History 0.102145
+Fantasy 0.102145
+dtype: float64
+movies.genre.nunique()
+16
+movies.genre.unique()
+array(['Crime', 'Action', 'Drama', 'Western', 'Adventure', 'Biography',
+ 'Comedy', 'Animation', 'Mystery', 'Horror', 'Film-Noir', 'Sci-Fi',
+ 'History', 'Thriller', 'Family', 'Fantasy'], dtype=object)
+movies.content_rating
+content_rating
+0 R
+1 R
+2 R
+3 PG-13
+4 R
+... ...
+974 PG
+975 PG
+976 PG-13
+977 PG
+978 R
+979 rows × 1 columns
+dtype: object
+movies.genre
+genre
+0 Crime
+1 Crime
+2 Crime
+3 Action
+4 Crime
+... ...
+974 Comedy
+975 Adventure
+976 Action
+977 Horror
+978 Crime
+979 rows × 1 columns
+dtype: object
+pd.crosstab(movies.genre,movies.content_rating)
+content_rating APPROVED G GP NC17
+NOT
+RATED PASSED PG PG13 R
+TVMA UNRATED X
+genre
+Action 3 1 1 0 4 1 11 44 67 0 3 0
+Adventure 3 2 0 0 5 1 21 23 17 0 2 0
+Animation 3 20 0 0 3 0 25 5 5 0 1 0
+Biography 1 2 1 0 1 0 6 29 36 0 0 0
+Comedy 9 2 1 1 16 3 23 23 73 0 4 1
+Crime 6 0 0 1 7 1 6 4 87 0 11 1
+Drama 12 3 0 4 24 1 25 55 143 1 9 1
+Family 0 1 0 0 0 0 1 0 0 0 0 0
+Fantasy 0 0 0 0 0 0 0 0 1 0 0 0
+Film-Noir 1 0 0 0 1 0 0 0 0 0 1 0
+History 0 0 0 0 0 0 0 0 0 0 1 0
+Horror 2 0 0 1 1 0 1 2 16 0 5 1
+Mystery 4 1 0 0 1 0 1 2 6 0 1 0
+Sci-Fi 1 0 0 0 0 0 0 1 3 0 0 0
+Th ill 1 0 0 0 0 0 1 0 3 0 0 0
+Thriller 1 0 0 0 0 0 1 0 3 0 0 0
+Western 1 0 0 0 2 0 2 1 3 0 0 0
+duration
+count 979.000000
+mean 120.979571
+std 26.218010
+min 64.000000
+25% 102.000000
+50% 117.000000
+75% 134.000000
+max 242.000000
+dtype: float64
+movies.duration.describe()
+movies.duration.plot(kind='hist')
+<Axes: ylabel='Frequency'>
+movies.genre.value_counts().plot(kind='bar')
+<Axes: xlabel='genre'>
+### Handle Missing Values in Pandas
+City Colors Reported Shape Reported State Time
+18236 Grant Park NaN TRIANGLE IL 12/31/2000 23:00
+18237 Spirit Lake NaN DISK IA 12/31/2000 23:00
+18238 Eagle River NaN NaN WI 12/31/2000 23:45
+18239 Eagle River RED LIGHT WI 12/31/2000 23:45
+18240 Ybor NaN OVAL FL 12/31/2000 23:59
+ufo = pd.read_csv("http://bit.ly/uforeports")
+ufo.tail()
+'''
+* NaN is not a string, special value : numpy.nan
+* NaN -- "Not a number" and it indicates missing value
+'''
+ufo.isnull().tail()
+City Colors Reported Shape Reported State Time
+18236 False True False False False
+18237 False True False False False
+18238 False True True False False
+18239 False False False False False
+18240 False True False False False
+City Colors Reported Shape Reported State Time
+18236 True False True True True
+18237 True False True True True
+18238 True False False True True
+18239 True True True True True
+18240 True False True True True
+ufo.notnull().tail()
+ufo.isnull().sum()
+0
+City 26
+Colors Reported 15359
+Shape Reported 2644
+State 0
+Time 0
+dtype: int64
+City Colors Reported Shape Reported State Time
+21 NaN NaN NaN LA 8/15/1943 0:00
+22 NaN NaN LIGHT LA 8/15/1943 0:00
+204 NaN NaN DISK CA 7/15/1952 12:30
+241 NaN BLUE DISK MT 7/4/1953 14:00
+613 NaN NaN DISK NV 7/1/1960 12:00
+ufo[ufo.City.isnull()].head()
+ufo.shape
+(18241, 5)
+ufo.dropna(how='any').shape ## if any values are missing in a row, then drop that row
+(2486, 5)
+ufo.dropna(how='all').shape ## if all values are missing in a row, then drop that row
+(18241, 5)
+ufo.dropna(subset=['City','Shape Reported'],how='any').shape
+##if any values are missing in a row (only City and Shape Reported), then drop that row
+(15575, 5)
+ufo.dropna(subset=['City','Shape Reported'],how='all').shape
+##if any values are missing in a row (only City and Shape Reported), then drop that row
+(18237, 5)
+ufo['Shape Reported'].value_counts(dropna=False)
+count
+Shape Reported
+LIGHT 2803
+NaN 2644
+DISK 2122
+TRIANGLE 1889
+OTHER 1402
+CIRCLE 1365
+SPHERE 1054
+FIREBALL 1039
+OVAL 845
+CIGAR 617
+FORMATION 434
+VARIOUS 333
+RECTANGLE 303
+CYLINDER 294
+CHEVRON 248
+DIAMOND 234
+EGG 197
+FLASH 188
+TEARDROP 119
+CONE 60
+CROSS 36
+DELTA 7
+ROUND 2
+CRESCENT 2
+DOME 1
+PYRAMID 1
+FLARE 1
+HEXAGON 1
+dtype: int64
+ufo['Shape Reported'].fillna(value='VARIOUS', inplace=True)
+/tmp/ipython-input-1909117351.py:1: FutureWarning: A value is trying to be set on a copy of a
+The behavior will change in pandas 3.0. This inplace method will never work because the interm
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: valu
+ ufo['Shape Reported'].fillna(value='VARIOUS', inplace=True)
+ufo['Shape Reported'].value_counts(dropna=False)
+count
+Shape Reported
+VARIOUS 2977
+LIGHT 2803
+DISK 2122
+TRIANGLE 1889
+OTHER 1402
+CIRCLE 1365
+SPHERE 1054
+FIREBALL 1039
+OVAL 845
+CIGAR 617
+FORMATION 434
+RECTANGLE 303
+CYLINDER 294
+CHEVRON 248
+DIAMOND 234
+EGG 197
+FLASH 188
+TEARDROP 119
+CONE 60
+CROSS 36
+DELTA 7
+ROUND 2
+CRESCENT 2
+DOME 1
+PYRAMID 1
+FLARE 1
+HEXAGON 1
+dtype: int64
+City Colors Reported Shape Reported State Time
+0 Ithaca NaN TRIANGLE NY 6/1/1930 22:00
+1 Willingboro NaN OTHER NJ 6/30/1930 20:00
+2 Holyoke NaN OVAL CO 2/15/1931 14:00
+3 Abilene NaN DISK KS 6/1/1931 13:00
+4 New York Worlds Fair NaN LIGHT NY 4/18/1933 19:00
+ufo = pd.read_csv("http://bit.ly/uforeports")
+ufo.head()
+ufo = ufo.set_index('Time')
+ufo.tail()
+City Colors Reported Shape Reported State
+Time
+12/31/2000 23:00 Grant Park NaN TRIANGLE IL
+12/31/2000 23:00 Spirit Lake NaN DISK IA
+12/31/2000 23:45 Eagle River NaN NaN WI
+12/31/2000 23:45 Eagle River RED LIGHT WI
+12/31/2000 23:59 Ybor NaN OVAL FL
+ufo.fillna(method='bfill').tail()
+/tmp/ipython-input-463668170.py:1: FutureWarning: DataFrame.fillna with 'method' is deprecated
+ ufo.fillna(method='bfill').tail()
+City Colors Reported Shape Reported State
+Time
+12/31/2000 23:00 Grant Park RED TRIANGLE IL
+12/31/2000 23:00 Spirit Lake RED DISK IA
+12/31/2000 23:45 Eagle River RED LIGHT WI
+12/31/2000 23:45 Eagle River RED LIGHT WI
+12/31/2000 23:59 Ybor NaN OVAL FL
+ufo.fillna(method='ffill').tail()
+/tmp/ipython-input-2710079311.py:1: FutureWarning: DataFrame.fillna with 'method' is deprecate
+ ufo.fillna(method='ffill').tail()
+City Colors Reported Shape Reported State
+Time
+12/31/2000 23:00 Grant Park RED TRIANGLE IL
+12/31/2000 23:00 Spirit Lake RED DISK IA
+12/31/2000 23:45 Eagle River RED DISK WI
+12/31/2000 23:45 Eagle River RED LIGHT WI
+12/31/2000 23:59 Ybor RED OVAL FL
+## Pandas Indexing
+drinks = pd.read_csv("http://bit.ly/drinksbycountry")
+drinks.head()
+country beer_servings spirit_servings wine_servings total_litres_of_pure_alcohol co
+0 Afghanistan 0 0 0 0.0
+1 Albania 89 132 54 4.9
+2 Algeria 25 0 14 0.7
+3 Andorra 245 138 312 12.4
+4 Angola 217 57 45 5.9
+drinks.index
+RangeIndex(start=0, stop=193, step=1)
+drinks.continent.head()
+continent
+0 Asia
+1 Europe
+2 Africa
+3 Europe
+4 Africa
+dtype: object
+drinks.set_index('country',inplace=True)
+drinks.continent.head()
+continent
+country
+Afghanistan Asia
+Albania Europe
+Algeria Africa
+Andorra Europe
+Angola Africa
+dtype: object
+population
+Albania 3000000
+Andorra 85000
+people = pd.Series([3000000,85000], index=['Albania','Andorra'],name='population')
+people
+
+Class - 12 Modularity
+
+'''
+MODULARITY
+1. WHAT? -- Breaking down program into smaller, reusable parts
+2. BENEFITS ? --
+A. Improve code readability and maintain
+B. Easier to debug and test
+C. Reusable
+'''
+hi
+## How to create function and use it ..
+def greet(name):
+return f'Hello, {name}'
+'
+Hello, BITS Class
+'
+greet('BITS Class')
+greet('Aakash')
+'
+Hello, Aakash
+'
+def calculate_area(length, width):
+return length*width
+calculate_area(5,3)
+15
+## Module:: File containing python code (Functions, classes, variables) that can be imported and u
+! touch import_experiment.py
+from import_experiment import create_data
+Start coding or generate with AI.
+??create_data
+names = ['Aakash','Amit','Ramesh']
+marks = [70,80,90]
+Name Marks
+0 Aakash 70
+1 Amit 80
+2 Ramesh 90
+df = create_data(names, marks)
+display(df)
+! touch string_utils.py
+from string_utils import reverse_string
+'
+HSAKAA
+'
+reverse_string('AAKASH')
+'
+MO
+'
+reverse_string('OM')
+reverse_string('MOM')
+'
+MOM
+'
+## Package -- Directory containing multiple modules and special __init__.py file
+!mkdir utilities
+!cp import_experiment.py string_utils.py utilities/
+!touch utilities/__init__.py
+from utilities import string_utils
+'
+HSAKAA
+'
+string_utils.reverse_string('AAKASH')
